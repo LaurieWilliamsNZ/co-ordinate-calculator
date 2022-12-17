@@ -1,3 +1,48 @@
+# co-ordinate-calculator
+
+## User Story
+
+As a surveyor I want to be able to compare lists of points so I can work out characteristics of those
+points and plan work for my survey team
+
+## Description
+
+Write a simple React web page that presents a form with a text box where a user can enter series
+of pairs of coordinates and then submit them – the page will then display:
+
+- [ ] The closest pair and their distance apart
+- [ ] The most separated (furthest apart) pair and their distance apart
+- [ ] The average distance between every point pair
+
+
+## Acceptance Criteria
+
+- The input box will accept the points as comma separated pairs and each pair of coordinates
+separated by a space ie: 0.0,1.0 3.5,8.0 4.0,3.1
+
+This is passing coordinate pairs:
+0.0, 1.0
+3.5, 8.0
+4.0, 3.1
+
+- [ ] If two pairs of points are equally close or equally far apart then it doesn’t matter which of the
+duplicates is shown.
+- [x] If invalid input is provided – then simple error messages should be displayed.
+- [x] Point coordinates should be output to 1 decimal place and distances to two decimal places.
+- [x] Able to handle any number of pairs, but likely number is 2 to 10 pairs
+- [x] Code to be written in React and either javascript or typescript
+
+
+## Example usage
+Sample input and provided output:
+
+- [ ] Input : 0,1.234 3,8 4,3 10,13
+- [ ] Closest 0.0,1.2 4.0,3.0 Distance 4.37
+- [ ] Furthest 0.0,1.2 10.0,13.0 Distance 15.44
+- [ ] Average Distance 8.76
+
+======================
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
