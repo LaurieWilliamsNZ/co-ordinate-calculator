@@ -2,6 +2,7 @@ import { cleanup, render, screen } from '@testing-library/react';
 import App, { inputPairsAreValid } from './App';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-15';
+import { findClosestPair } from './helpers';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -59,4 +60,16 @@ test('inputPairsAreValid should be true if output to 1 decimal place and distanc
 
 test('inputPairsAreValid should return false if input is more than one pair', () => {
   expect(inputPairsAreValid('0.0, 1.0 3.5, 8.0')).toBe(false);
+});
+
+test('findClosestPair should return the closest pair of points and the distance between them', () => {
+  const points = [
+    [0, 1.2],
+    [3, 8],
+    [4, 3],
+    [10, 13],
+  ];
+  const expectedResult = { point1: [0, 1.2], point2: [4, 3], distance: 4.39 };
+
+  expect(findClosestPair(points)).toEqual(expectedResult);
 });

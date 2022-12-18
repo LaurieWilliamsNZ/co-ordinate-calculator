@@ -1,14 +1,16 @@
 import React from 'react';
 import './App.css';
+import { findClosestPair } from './helpers';
 
 interface AppState {
   stateHook?: [React.Dispatch<React.SetStateAction<number[]>>, number[]];
 }
 
 const testState: number[][] = [
-  [0.0, 1.0],
-  [3.5, 8.0],
-  [4.0, 3.1],
+  [0, 1.234],
+  [3, 8],
+  [4, 3],
+  [10, 13],
 ];
 
 export const inputPairsAreValid = (input: string): boolean => {
@@ -22,9 +24,10 @@ const App: React.FC<AppState> = () => {
   ]);
   const [error, setError] = React.useState<string>('');
 
-  React.useEffect(() => {
-    console.log(coOrdinates);
-  }, [coOrdinates]);
+  // React.useEffect(() => {
+  //   const closestPair = findClosestPair(coOrdinates);
+  //   console.log(closestPair);
+  // }, [coOrdinates]);
 
   return (
     <div className='App'>
@@ -59,7 +62,18 @@ const App: React.FC<AppState> = () => {
         {error?.length > 0 && <p style={{ color: 'red' }}>{error}</p>}
         <input type='submit' value='Submit' disabled={error?.length > 0} />
       </form>
-      <p>Input: {coOrdinates?.join(' ') || ''}</p>
+      <p>Input: {coOrdinates?.join(' ') || ''} </p>{' '}
+      <p>
+        Closest:{' '}
+        {
+          //TODO: tidy this up - could maybe set toFixed in findClosestPair instead
+          findClosestPair(coOrdinates)?.point1[0]?.toFixed(1)
+        }
+        , {findClosestPair(coOrdinates)?.point1[1]?.toFixed(1)} to{' '}
+        {findClosestPair(coOrdinates)?.point2[0]?.toFixed(1)} ,
+        {findClosestPair(coOrdinates)?.point2[1]?.toFixed(1)} Distance:{' '}
+        {findClosestPair(coOrdinates)?.distance}
+      </p>
       <p>Furthest:</p>
       <p>Average Distance:</p>
     </div>
