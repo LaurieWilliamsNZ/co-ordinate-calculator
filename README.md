@@ -10,7 +10,7 @@ points and plan work for my survey team
 Write a simple React web page that presents a form with a text box where a user can enter series
 of pairs of coordinates and then submit them – the page will then display:
 
-- [ ] The closest pair and their distance apart
+- [x] The closest pair and their distance apart
 - [ ] The most separated (furthest apart) pair and their distance apart
 - [ ] The average distance between every point pair
 
