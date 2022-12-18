@@ -1,3 +1,4 @@
+import React from 'react';
 import { cleanup, render, screen } from '@testing-library/react';
 import App, { inputPairsAreValid } from './App';
 import Enzyme from 'enzyme';
@@ -61,6 +62,9 @@ test('inputPairsAreValid should be true if output to 1 decimal place and distanc
 test('inputPairsAreValid should return false if input is more than one pair', () => {
   expect(inputPairsAreValid('0.0, 1.0 3.5, 8.0')).toBe(false);
 });
+
+// TODO: add test to check if there are two pairs of points in state to calculate the distance between them
+// TODO: add test to find maxDistance between two points for findMostSeparatedPair
 
 test('findClosestPair should return the closest pair of points and the distance between them', () => {
   const points = [

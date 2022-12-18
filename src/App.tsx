@@ -1,17 +1,10 @@
 import React from 'react';
 import './App.css';
-import { findClosestPair } from './helpers';
+import { findClosestPair, findMostSeparatedPair } from './helpers';
 
 interface AppState {
   stateHook?: [React.Dispatch<React.SetStateAction<number[]>>, number[]];
 }
-
-const testState: number[][] = [
-  [0, 1.234],
-  [3, 8],
-  [4, 3],
-  [10, 13],
-];
 
 export const inputPairsAreValid = (input: string): boolean => {
   if (!input) return false;
@@ -20,14 +13,12 @@ export const inputPairsAreValid = (input: string): boolean => {
 
 const App: React.FC<AppState> = () => {
   const [coOrdinates, setcoOrdinates] = React.useState<number[][]>([
-    ...testState,
+    // [0, 1.2],
+    // [3, 8],
+    // [4, 3],
+    // [10, 13],
   ]);
   const [error, setError] = React.useState<string>('');
-
-  // React.useEffect(() => {
-  //   const closestPair = findClosestPair(coOrdinates);
-  //   console.log(closestPair);
-  // }, [coOrdinates]);
 
   return (
     <div className='App'>
@@ -45,6 +36,7 @@ const App: React.FC<AppState> = () => {
               });
             // add input to coOrdinates state
             setcoOrdinates([...coOrdinates, inputArray]);
+            //TODO: clear input box
           }
         }}>
         <input
@@ -69,12 +61,26 @@ const App: React.FC<AppState> = () => {
           //TODO: tidy this up - could maybe set toFixed in findClosestPair instead
           findClosestPair(coOrdinates)?.point1[0]?.toFixed(1)
         }
-        , {findClosestPair(coOrdinates)?.point1[1]?.toFixed(1)} to{' '}
-        {findClosestPair(coOrdinates)?.point2[0]?.toFixed(1)} ,
+        {findClosestPair(coOrdinates)?.point1[1]?.toFixed(1)}{' '}
+        {findClosestPair(coOrdinates)?.point2[0]?.toFixed(1)}
         {findClosestPair(coOrdinates)?.point2[1]?.toFixed(1)} Distance:{' '}
-        {findClosestPair(coOrdinates)?.distance}
+        {coOrdinates?.length &&
+          findClosestPair(coOrdinates)?.distance?.toFixed(2)}
       </p>
-      <p>Furthest:</p>
+      <p>
+        Furthest:{' '}
+        {
+          //TODO: tidy this up - could maybe set toFixed in findMostSeparatedPair instead
+          findMostSeparatedPair(coOrdinates)?.point1[0]?.toFixed(1)
+        }
+        {findMostSeparatedPair(coOrdinates)?.point1[1]?.toFixed(1)}{' '}
+        {findMostSeparatedPair(coOrdinates)?.point2[0]?.toFixed(1)}
+        {findMostSeparatedPair(coOrdinates)?.point2[1]?.toFixed(
+          1
+        )} Distance:{' '}
+        {coOrdinates?.length &&
+          findMostSeparatedPair(coOrdinates)?.distance?.toFixed(2)}
+      </p>
       <p>Average Distance:</p>
     </div>
   );
